@@ -28,12 +28,12 @@ function validateNum(num) {
 }
 
 function validate(soKM, thoiGianCho) {
-    if(!validateNum(soKM) || soKM == '') {
+    if(!validateNum(soKM) || soKM == '' || soKM == 0) {
         alert('Số KM không hợp lệ');
         document.getElementById('soKM').value='';
         document.getElementById('soKM').focus();
         return false;
-    } else if(!validateNum(thoiGianCho) || thoiGianCho == '') {
+    } else if(!validateNum(thoiGianCho)) {
         document.getElementById('thoiGianCho').value='';
         document.getElementById('thoiGianCho').focus();
         alert('Thời gian chờ không hợp lệ');
@@ -64,17 +64,23 @@ function btnTinhTienClick() {
     var tongTien = tinhTien(loaiXe, soKM, thoiGianCho);
     divThanhTien.style.display = 'block';
     xuatTien.innerHTML = tongTien;
-    return true;
+    return tongTien;
 }
 
 document.getElementById('inHoaDon').onclick = function() {
-    if(btnTinhTienClick()) {
+    var tongTien = 0;
+    document.getElementById('hdSoKM').innerHTML = '0';
+    document.getElementById('hdThoiGianCho').innerHTML = '0';
+    document.getElementById('hdLoaiXe').innerHTML = '';
+    document.getElementById('hdThanhTien').innerHTML = '0';
+    if(tongTien = btnTinhTienClick()) {
         var soKM = document.getElementById('soKM').value;
         var thoiGianCho = document.getElementById('thoiGianCho').value;
         var loaiXe = document.querySelector('input[type=radio]:checked+label').innerHTML;
         document.getElementById('hdSoKM').innerHTML = soKM ? soKM : '0';
         document.getElementById('hdThoiGianCho').innerHTML = thoiGianCho ? thoiGianCho : '0';
         document.getElementById('hdLoaiXe').innerHTML = loaiXe;
+        document.getElementById('hdThanhTien').innerHTML = tongTien;
     } else {
         document.querySelector('.modal-footer>button').click();
     }
