@@ -48,7 +48,7 @@ function tinhTien(loaiXe, soKM, thoiGianCho) {
     if(soKM <= 1) {
         return loaiPhi[1] + tienCho;
     } else {
-        return soKM <= 20 ? tienCho + loaiPhi['1'] + (soKM-1)*loaiPhi['20'] : tienCho + loaiPhi['1'] + 19*loaiPhi['20'] + (soKM-20)*loaiPhi['20'];
+        return soKM <= 20 ? tienCho + soKM*loaiPhi['20'] : tienCho + 20*loaiPhi['20'] + (soKM-20)*loaiPhi['20'];
     }
 }
 
